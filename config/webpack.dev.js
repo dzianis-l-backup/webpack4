@@ -13,6 +13,52 @@ module.exports = {
         publicPath: '/'
     },
     devServer: {
-        contentBase: 'dist'
+        contentBase: 'dist',
+        overlay: true,
+    },
+
+    /** loaders description*/
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [{ loader: 'style-loader' }, { loader: 'css-loader' },
+                ]
+            },
+            {
+                test: /\.html$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                        }
+                    },
+                    {
+                        loader: 'extract-loader',
+                        options: {
+                            publicPath: '../'
+                        }
+                    },
+                    {
+                        loader: 'html-loader',
+                        options: {
+                            attrs: ['img:src']
+                        }
+                    },
+                ]
+            },
+            {
+                test: /\.jpg$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'images/[name].[ext]'
+                        }
+                    }
+                ]
+            },
+        ]
     }
 }

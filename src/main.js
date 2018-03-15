@@ -1,1 +1,2 @@
-alert('Hello world')
+import './main.css'
+import './index.html'
