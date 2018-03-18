@@ -2,7 +2,7 @@ import 'babel-runtime/regenerator'
 import './main.css'
 import './index.html'
 /** websocket connection*/
-import 'webpack-hot-middleware/client.js'
+import 'webpack-hot-middleware/client?reload=true'
 
 
 const f = async args => {
