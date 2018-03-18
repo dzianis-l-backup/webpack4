@@ -3,7 +3,7 @@ const path = require('path')
 module.exports = {
     entry: {
         /** always relative path, if array - concatenation*/
-        main: ['./src/main.js']
+        main: ['./node_modules/core-js/fn/promise', './src/main.js']
     },
     /** webpack 4*/
     mode: 'development',
@@ -20,6 +20,15 @@ module.exports = {
     /** loaders description*/
     module: {
         rules: [
+            {
+                test: /\.js$/,
+                use: [
+                    {
+                        loader: 'babel-loader'
+                    }
+                ],
+                exclude: /node_modules/
+            },
             {
                 test: /\.css$/,
                 use: [{ loader: 'style-loader' }, { loader: 'css-loader' },
