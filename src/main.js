@@ -1,7 +1,8 @@
-import 'babel-runtime/regenerator'
-import './main.css'
-import './index.html'
-/** websocket connection*/
-import 'webpack-hot-middleware/client?reload=true'
-import 'babel-register'
-import './app.js'
+require('babel-runtime/regenerator')
+require('react-hot-loader/patch.js')
+require('babel-register')
+require('webpack-hot-middleware/client?reload=true')
+require('./main.css')
+require('./images/cat.jpg')
+require('./index.html')
+require('./app.js')
