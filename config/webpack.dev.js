@@ -43,6 +43,22 @@ module.exports = {
                 ]
             },
             {
+                test: /\.sass$/,
+                use: [
+                    { loader: 'style-loader' },
+                    { loader: 'css-loader' },
+                    { loader: 'sass-loader' },
+                ]
+            },
+            {
+                test: /\.less$/,
+                use: [
+                    { loader: 'style-loader' },
+                    { loader: 'css-loader' },
+                    { loader: 'less-loader' },
+                ]
+            },
+            {
                 test: /\.html$/,
                 use: [
                     {
@@ -59,7 +75,7 @@ module.exports = {
                     {
                         loader: 'file-loader',
                         options: {
-                            name: 'images/[name].[ext]'
+                            name: 'images/[name]-[hash:8].[ext]'
                         }
                     }
                 ]
@@ -68,6 +84,9 @@ module.exports = {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new Html({ template: './src/index.html' })
+        new Html({
+            template: './src/index.ejs',
+            title: "Link's Journal"
+        })
     ]
 }
