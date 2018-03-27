@@ -5,7 +5,8 @@ const Html = require('html-webpack-plugin')
 module.exports = {
     entry: {
         /** always relative path, if array - concatenation*/
-        main: ['./node_modules/core-js/fn/promise', './src/main.js']
+        main: ['./node_modules/core-js/fn/promise', './src/main.js'],
+        ts: ['./src/index.ts']
     },
     /** webpack 4*/
     mode: 'development',
@@ -36,6 +37,15 @@ module.exports = {
                     'source-map-loader'
                 ],
                 exclude: /node_modules/
+            },
+            {
+                test: /\.ts$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'awesome-typescript-loader'
+                    },
+                ],
             },
             {
                 test: /\.css$/,
@@ -83,7 +93,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
+        /*new webpack.HotModuleReplacementPlugin(),*/
         new Html({
             template: './src/index.ejs',
             title: "Link's Journal"

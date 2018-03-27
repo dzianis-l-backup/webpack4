@@ -1,7 +1,7 @@
-require('babel-runtime/regenerator')
-require('react-hot-loader/patch.js')
+/*require('babel-runtime/regenerator')
+require('webpack-hot-middleware/client?reload=true')*/
+/*require('react-hot-loader/patch.js')*/
 require('babel-register')
-require('webpack-hot-middleware/client?reload=true')
 require('./main.sass')
 require('./images/cat.jpg')
 require('./index.html')

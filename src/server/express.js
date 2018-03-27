@@ -26,6 +26,8 @@ server.use(webpackHotMiddleware)
  * directory to be served as just static sources*/
 const staticMiddleware = express.static('dist')
 server.use(staticMiddleware)
-server.listen(8000, ()=> {
-    console.log('Server is listening')
+
+const PORT = process.env.PORT || 8080
+server.listen(PORT, ()=> {
+    console.log(`Server is listening on ${PORT}`)
 })
