@@ -1,33 +1,34 @@
-import config from '../../config/webpack.dev.js'
-import express from 'express'
-import webpack from 'webpack'
-import webpackDevMiddlewareFunc from 'webpack-dev-middleware'
-
-/** server instance creation*/
+import express from "express"
 const server = express()
+import path from "path"
 
-/** webpack + config*/
-const compiler = webpack(config)
+const isProd = process.env.NODE_ENV === "production"
+if (!isProd) {
+  const webpack = require("webpack")
+  const config = require("../../config/webpack.dev.js")
+  const compiler = webpack(config)
 
-/** mild compile*/
-import webpackHotMiddlewareFunc from 'webpack-hot-middleware'
-/** middleware that recompiles if smth has been changed*/
-const webpackDevMiddleware = webpackDevMiddlewareFunc(compiler, config.devServer)
+  const webpackDevMiddleware = require("webpack-dev-middleware")(
+    compiler,
+    config.devServer
+  )
 
-/** webpack hot reloading middleware*/
-const webpackHotMiddleware = webpackHotMiddlewareFunc(compiler)
+  const webpackHotMiddlware = require("webpack-hot-middleware")(
+    compiler,
+    config.devServer
+  )
 
-/** middleware usage*/
-server.use(webpackDevMiddleware)
-server.use(webpackHotMiddleware)
+  server.use(webpackDevMiddleware)
+  server.use(webpackHotMiddlware)
+  console.log("Middleware enabled")
+}
 
-/**
- * middleware creation,
- * directory to be served as just static sources*/
-const staticMiddleware = express.static('dist')
+const staticMiddleware = express.static("dist")
 server.use(staticMiddleware)
 
 const PORT = process.env.PORT || 8080
-server.listen(PORT, ()=> {
-    console.log(`Server is listening on ${PORT}`)
+server.listen(PORT, () => {
+  console.log(
+    `Server listening on http://localhost:${PORT} in ${process.env.NODE_ENV}`
+  )
 })
