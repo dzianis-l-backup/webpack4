@@ -83,11 +83,11 @@ module.exports = env => {
           NODE_ENV: JSON.stringify(env.NODE_ENV)
         }
       }),
-      new HTMLWebpackPlugin({
-        template: "./src/index.ejs",
-        inject: true,
-        title: "Link's Journal"
-      }),
+      // new HTMLWebpackPlugin({
+      //   template: "./src/index.ejs",
+      //   inject: true,
+      //   title: "Link's Journal"
+      // }),
       new UglifyJSPlugin(),
       new CompressionPlugin({
         algorithm: "gzip"
